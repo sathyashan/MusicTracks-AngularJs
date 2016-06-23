@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Misc Details</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body ng-app="musicApp">
+    <div class="headerTitle">
+        Music Tracks
+    </div>
+    <div class="mainContent" id="mainContent">
+        <div ng-controller="searchCtrl" ng-cloak>
+            <div class="searchBoxRow centerize">
+                <input class="searchInput" id="searchInput" type="text" placeholder="search.." ng-model="searchInput" ng-keyup="searchFunctionality($event)"
+                />
+            </div>
+            <div class="ball centerize" ng-if="!isMainContentLoaded"></div>
+            <div class="listSection" ng-controller="listMusic" ng-if="isMainContentLoaded">
+                <ul class="musicList centerize">
+                    <div ng-repeat="item in itemsToShow" class="musicTrackItem">
+                        <li class="trackItem" ng-click=" ; editItem($index)">
+                            <div class="trackTitle">{{item.title}}</div>
+                            <div class="genresList">
+                                <span class="genreItem" ng-repeat="genre in item.genres | limitTo: 2">{{genre.name}}</span>
+                            </div>
+                            <div class="starRating clearFix">
+                                <span ng-repeat="i in ngIterate(item.rating)">
+                                    <img class="starImg" src="images/star-rated.png"/>                                    
+                                </span>
+                                <span ng-if="item.isHalfStarReq">
+                                    <img class="starImg" src="images/star-half.png"/>
+                                </span>
+                                <span class="btnEdit" ng-click="item.openEditTrack = true">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
+                                </span>
+                            </div>
+                            <div class="newTrack" ng-if="item.openEditTrack" ng-controller="editTrackCtrl">
+                                <div class="trackTitleSection">
+                                    <span>Track Name</span>
+                                    <input type="text" class="trackTitle newTrackIP" ng-model="editTrack.title" placeholder="Track Name">                                    </input>
+                                </div>
+                                <div class="trackRatingSection">
+                                    <span>Rating</span>
+                                    <div class="newTrackIP">
+                                        <span class="star" ng-class="{starFill: editTrack.rating >= $index + 1}" ng-repeat="star in ngIterate(5)" ng-click="starSelected($index + 1)">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </span>
+
+                                    </div>
+
+                                </div>
+                                <div class="trackGenreSection editTrackGenreSection">
+                                    <span>Genre</span>
+                                    <div class="newTrackIP">
+                                        <div class="genresList">
+                                            <span class="genreItem" ng-repeat="genre in genresList">{{genre.name}}</span>
+                                        </div>
+                                        <select class="avlGenresList" ng-options="option.name for option in genres" ng-model="genresList" multiple></select>
+                                    </div>
+                                </div>
+                                <div class="newTrackActionItems clearFix">
+                                    <div class="btnSave" ng-click="saveNewTrack()">
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                        <span>Save</span>
+                                    </div>
+                                    <div class="btnCancel" ng-click="hideNewTrack(); item.openEditTrack = false;">
+                                        <i class="fa fa-ban" aria-hidden="true"></i>
+                                        <span>cancel</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+                </ul>
+                <div class="pageNav centerize" ng-if="totalPages > 1">
+                    <a class="prevPage" id="prevPage" ng-click="navigatePrev()">prev</a>
+                    <input class="pageNum" type="text" ng-model="currentPage" readonly/>
+                    <span>of </span>
+                    <span class="totalPages">{{totalPages}}</span>
+                    <a class="nextPage" id="nextPage" ng-click="navigateNext()">next</a>
+                </div>
+                <div class="btnAddNewTrack centerize" ng-click="openNewTrack = true;">Add New Track</div>
+                <div class="newTrack centerize" ng-if="openNewTrack" ng-controller="newTrackCtrl">
+                    <div class="trackTitleSection">
+                        <span>Track Name</span>
+                        <input type="text" class="trackTitle newTrackIP" ng-model="newTrack.title" placeholder="Track Name" />
+                    </div>
+                    <div class="trackRatingSection">
+                        <span>Rating</span>
+                        <div class="newTrackIP">
+                            <li class="star" ng-class="{starFill: newRating >= $index + 1}" ng-repeat="star in ngIterate(5)" ng-click="starSelected($index + 1)">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                            </li>
+                        </div>
+                    </div>
+                    <div class="trackGenreSection">
+                        <span>Genre</span>
+                        <div class="newTrackIP">
+                            <div class="genresList">
+                                <span class="genreItem" ng-repeat="genre in newGenresList">{{genre.name}}</span>
+                            </div>
+                            <select class="avlGenresList" ng-options="option.name for option in genres" ng-model="newGenresList" multiple></select>
+                            <div class="createNewGenre">
+                                <input type="text" class="ipNewGenreName" ng-model="ipNewGenre" placeholder="New genre name"></input>
+                                <div class="btnAddNewGenre" ng-click="addNewGenre()">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                    <span style="margin-left: 5px">Add New Genre</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="newTrackActionItems clearFix">
+                        <div class="btnSave" ng-click="saveNewTrack()">
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                            <span>Save</span>
+                        </div>
+                        <div class="btnCancel" ng-click="hideNewTrack()">
+                            <i class="fa fa-ban" aria-hidden="true"></i>
+                            <span>cancel</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="toastMessageBox clearFix" ng-show="isToastMessageShowON" id="toastMessageBox">
+                <div class="toast">{{toastMessage}}</div>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-resource.min.js"></script>
+        <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,344 @@
+/* loading Animation*/
+@keyframes ball-anim {
+  0% {
+      transform: scale(.2);
+      background: #E3F2FD;
+    
+  }
+  50%{
+      transform: scale(1);
+      background: #2196F3;
+  }
+  100% {
+      transform: scale(0.2);
+      background: #E3F2FD;   
+  }
+}
+@-moz-keyframes ball-anim{
+0% {
+      -moz-transform: scale(.2);
+      background: #E3F2FD;
+    
+  }
+  50%{
+      -moz-transform: scale(1);
+      background: #2196F3;
+  }
+  100% {
+      -moz-transform: scale(0.2);
+      background: #E3F2FD;   
+  }
+}
+@-ms-keyframes ball-anim{
+0% {
+      -ms-transform: scale(.2);
+      background: #E3F2FD;
+    
+  }
+  50%{
+      -ms-transform: scale(1);
+      background: #2196F3;
+  }
+  100% {
+      -ms-transform: scale(0.2);
+      background: #E3F2FD;   
+  }
+}
+@-webkit-keyframes ball-anim{
+0% {
+      -webkit-transform: scale(.2);
+      background: #E3F2FD;
+    
+  }
+  50%{
+      -webkit-transform: scale(1);
+      background: #2196F3;
+  }
+  100% {
+      -webkit-transform: scale(0.2);
+      background: #E3F2FD;   
+  }
+}
+@-o-keyframes ball-anim{
+0% {
+      -o-transform: scale(.2);
+      background: #E3F2FD;
+    
+  }
+  50%{
+      -o-transform: scale(1);
+      background: #2196F3;
+  }
+  100% {
+      -o-transform: scale(0.2);
+      background: #E3F2FD;   
+  }
+}
+.ball{
+    margin-top: 20px;
+    display: block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    -moz-animation: ball-anim 1s linear infinite;
+    -webkit-animation: ball-anim 1s linear infinite;
+    -ms-animation: ball-anim 1s linear infinite;
+    -o-animation: ball-anim 1s linear infinite;
+    animation: ball-anim 1s linear infinite;
+    -webkit-transition: all .5s ease-in;
+    -moz-transition: all .5s ease-in;
+    -ms-transition: all .5s ease-in;
+    -o-transition: all .5s ease-in;
+    transition: all .5s ease-in;
+}
+
+body{
+    background: #FAFAFA;
+    padding-bottom: 10px;
+    margin: 0px;
+    font-family: "Source Sans", helvetica, arial, sans-serif;
+}
+.headerTitle{
+    padding: 20px;
+    text-align: center;
+    border-bottom: solid 1px #9DACA9;
+    font-size: 20px;
+}
+.searchBoxRow{
+    padding: 10px 20px;
+    border-bottom: solid 1px #9DACA9;
+}
+.searchInput{
+    font-size: 20px;
+    background-image: url(images/search.png);
+    background-position: 5px center;
+    background-repeat: no-repeat;
+    background-size: 0.75em;
+    padding: 0.5em;
+    padding-left: 1.5em;
+    width: 65%;
+    border-radius: 1em;
+    border: solid 1px #9DACA9;
+}
+.searchInput:hover, .searchInput:focus{
+    outline: none;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+}
+[class*='btn']{
+    cursor: pointer;
+}
+
+.centerize{
+    text-align: center;
+    margin: 0 auto;
+}
+
+li{
+    list-style: none;
+}
+.trackItem{
+    text-align: left;
+    border-bottom: solid 1px #9DACA9;
+    padding: 10px;
+}
+.musicList{
+    border: solid 1px #9DACA9;
+    border-radius: 4px;
+    width: 65%;
+    margin-top: 20px;
+    padding: 0;
+}
+.trackTitle{
+    display: inline-block;
+}
+
+.musicTrackItem:nth-child(2n){
+    background: #EEEEEE;
+}
+.starRating{
+    float: right;
+}
+.starImg{
+    width: 16px;
+}
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+.pageNum{
+    padding: 4px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+    text-align: center;
+    border: solid 1px #dcdcdc;
+    font-size: 10px;
+    outline: none;
+}
+.pageNav{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 10px;
+}
+.prevPage{
+    margin-right: 10px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.totalPages{
+    margin-right: 10px;
+}
+.nextPage{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.genresList{
+    display: inline-block;
+    color: #666666;
+    font-size: 14px;
+    vertical-align: middle
+}
+.genresList::before{
+    content: "[ ";
+    color: #666666;
+}
+.genresList::after{
+    content: " ]";
+    color: #666666;
+}
+.genreItem:not(:last-of-type)::after{
+    content:" | " ;
+    color: #666666;
+}
+.btnAddNewTrack{
+    cursor: pointer;
+    padding: 10px;
+    border: solid 1px #9DACA9;
+    text-align: center;
+    width: 50%;
+    word-spacing: 2px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 10px;
+}
+.btnAddNewTrack:hover, .btnSave:hover, .btnCancel:hover, .btnAddNewGenre:hover{
+    background: #EEEEEE;
+}
+.newTrack{
+    border: solid 1px #9DACA9;
+    background: #FFF;
+    width: 65%;
+    text-align: left;
+    position: relative;
+    margin-top: 10px;
+    font-size: 12px;
+}
+.trackItem .newTrack{
+    width: 100%;
+}
+.star{
+    list-style: none;
+    display: inline-block;
+    color: #bdbdbd;
+    font-size: 16px;
+    padding: 1px;
+}
+.starFill{
+    color: #424242;
+}
+.starGp{
+    list-style: none;
+    display: inline-block;
+    color: #bdbdbd;
+    font-size: 16px;
+    padding: 1px;
+}
+.newTrackIP{
+    left: 120px;
+    top: 10px;;
+    position: absolute;
+}
+.trackTitleSection, .trackRatingSection, .trackGenreSection{
+    position: relative;
+    padding: 10px;
+}
+.trackGenreSection{
+    height: 150px;
+
+}
+.editTrackGenreSection{
+    height: 116px;
+}
+.newTrackIP .genresList{
+    display: block;
+}
+.avlGenresList{
+    margin-top: 10px;
+    height: 90px;
+    width: 200px;
+}
+.createNewGenre{
+    margin-top: 10px;
+}
+.trackTitle.newTrackIP, .ipNewGenreName{
+    width: 200px;
+}
+.ipNewGenreName{
+    display: inline-block;
+}
+.newTrackActionItems{
+    display: block;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+.btnAddNewGenre{
+    padding: 4px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 12px;
+    display: inline-table;
+    border: solid 1px #9DACA9;
+}
+.btnSave, .btnCancel{
+    float: right;
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px;
+    border: solid 1px #9DACA9;
+    text-align: center;
+    word-spacing: 2px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-right: 10px;
+}
+.clearFix{
+    display: block;
+}
+.clearFix::after{
+    content: " ";
+    visibility: hidden;
+    display: table;
+    clear: both;
+}
+.btnEdit{
+    padding: 4px;
+    font-size: 16px;
+    color: #2196F3;
+    margin-right: 4px;
+    margin-left: 5px;
+}
+.toast{
+    cursor: none;
+    right: 100px;
+    bottom: 10px;
+    position: fixed;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    background: #333;
+    color:#FFF;
+    display: inline-block;
+    border-radius: 2px;  
+}
